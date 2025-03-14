@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import HomeScreen from "./HomeScreen";
 import QuizScreen from "./QuizScreen";
-import ProfileScreen from "./screens/ProfileScreen";
+import ProfileScreen from "./ProfileScreen";
 import { Ionicons } from "@expo/vector-icons"; // 아이콘 사용
 
 const Tab = createBottomTabNavigator();
