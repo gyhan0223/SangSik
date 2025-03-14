@@ -6,11 +6,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#f8f9fa", // 밝은 배경색
   },
   header: {
-    height: 100,
-    justifyContent: "flex-end", // 아래쪽 정렬
+    flexDirection: "row",
+    justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "#4CAF50", // 초록색 헤더
-    paddingBottom: 10, // 텍스트를 살짝 위로 올림
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    backgroundColor: "#4CAF50",
   },
   headerText: {
     fontSize: 24,
