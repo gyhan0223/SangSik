@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { View, Text, TouchableOpacity, Alert } from "react-native";
 import styles from "../styles";
 
@@ -22,55 +21,70 @@ const quizData = [
     answer: "서울",
     correctRate: 80,
   },
-]; // quizData는 DB 연결, (정답률 = 정답자 수 / 전체 풀이자 수)
+];
 
 const shuffleArray = (array) => {
   return array.sort(() => Math.random() - 0.5);
-}; // 배열 랜덤 섞기 함수
+};
 
 export default function QuizScreen() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [options, setOptions] = useState([]);
-  const [point, setPoint] = useState(0); // 초기값은 추후에 개인정보 DB에서 보유 포인트로 대체
+  const [point, setPoint] = useState(0);
+  const [timeLeft, setTimeLeft] = useState(15); // 타이머 초기값 15초
 
   useEffect(() => {
-    // 선택지 랜덤 섞기
     setOptions(shuffleArray([...quizData[currentQuestion].options]));
+    setTimeLeft(15); // 문제 변경 시 타이머 리셋
   }, [currentQuestion]);
+
+  useEffect(() => {
+    if (timeLeft === 0) {
+      handleTimeout();
+      return;
+    }
+
+    const timer = setInterval(() => {
+      setTimeLeft((prevTime) => prevTime - 1);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [timeLeft]);
+
+  const handleTimeout = () => {
+    Alert.alert("시간 초과!", "다음 문제로 넘어갑니다.");
+    if (currentQuestion < quizData.length - 1) {
+      setCurrentQuestion(currentQuestion + 1);
+    } else {
+      Alert.alert("퀴즈 완료!", `총 점수: ${score}점`);
+      setCurrentQuestion(0);
+      setScore(0);
+    }
+  };
 
   const handleAnswerPress = (selectedOption) => {
     const correctAnswer = quizData[currentQuestion].answer;
-
     if (selectedOption === correctAnswer) {
       setScore(score + 1);
-
       setPoint((prevPoint) => {
         const rate = quizData[currentQuestion].correctRate;
-
-        if (rate >= 40) {
-          return prevPoint + 1;
-        } else if (rate >= 31 && rate < 40) {
-          return prevPoint + 2;
-        } else if (rate >= 21 && rate < 30) {
-          return prevPoint + 3;
-        } else if (rate >= 11 && rate < 20) {
-          return prevPoint + 4;
-        } else {
-          return prevPoint + 5;
-        }
+        if (rate >= 40) return prevPoint + 1;
+        if (rate >= 31) return prevPoint + 2;
+        if (rate >= 21) return prevPoint + 3;
+        if (rate >= 11) return prevPoint + 4;
+        return prevPoint + 5;
       });
       Alert.alert("정답!", "잘했어요! 🎉");
     } else {
       Alert.alert("오답!", `정답은 "${correctAnswer}" 입니다.`);
     }
 
-    // 마지막 문제인지 확인 후 종료 or 다음 문제로 이동
     if (currentQuestion < quizData.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
       Alert.alert("퀴즈 완료!", `총 점수: ${score + 1}점`);
-      setCurrentQuestion(0); // 처음부터 다시 시작
+      setCurrentQuestion(0);
       setScore(0);
     }
   };
@@ -82,8 +96,10 @@ export default function QuizScreen() {
         <Text style={styles.headerText}>상식</Text>
         <Text style={styles.myPoints}>현재 포인트 : {point}</Text>
       </View>
+
       {/* 문제 영역 */}
       <View style={styles.questionContainer}>
+        <Text style={styles.timerText}>⏳ {timeLeft}초</Text>
         <Text style={styles.questionText}>
           {quizData[currentQuestion].question}
         </Text>
@@ -91,7 +107,8 @@ export default function QuizScreen() {
           정답률 : {quizData[currentQuestion].correctRate}%
         </Text>
       </View>
-      {/* 선택지 버튼 4개 */}
+
+      {/* 선택지 버튼 */}
       <View style={styles.optionsContainer}>
         {options.map((option, index) => (
           <TouchableOpacity

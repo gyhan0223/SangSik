@@ -63,6 +63,14 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontWeight: "bold",
   },
+  timerText: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "red",
+    position: "absolute",
+    right: 10, // questionContainer 안에서 우측 정렬
+    top: 10, // questionContainer 안에서 상단 정렬
+  },
 });
 
 export default styles;
