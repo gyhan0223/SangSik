@@ -13,6 +13,21 @@ import QuizSetupScreen from "./screens/QuizSetupScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
+const QuizStack = createStackNavigator(); // 퀴즈 전용 Stack
+
+// ✅ 퀴즈 Stack Navigator (퀴즈 설정 → 퀴즈 화면)
+function QuizNavigator() {
+  return (
+    <QuizStack.Navigator screenOptions={{ headerShown: false }}>
+      <QuizStack.Screen name="QuizSetup" component={QuizSetupScreen} />
+      <QuizStack.Screen
+        name="Quiz"
+        component={QuizScreen}
+        options={{ gestureEnabled: false }} // 스와이프 뒤로 가기 비활성화
+      />
+    </QuizStack.Navigator>
+  );
+}
 
 // ✅ Tab Navigator (홈, 퀴즈, 프로필)
 function TabNavigator() {
@@ -32,7 +47,7 @@ function TabNavigator() {
       })}
     >
       <Tab.Screen name="홈" component={HomeScreen} />
-      <Tab.Screen name="퀴즈" component={QuizSetupScreen} />
+      <Tab.Screen name="퀴즈" component={QuizNavigator} />
       <Tab.Screen name="프로필" component={ProfileScreen} />
     </Tab.Navigator>
   );
@@ -49,12 +64,6 @@ export default function App() {
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
         <Stack.Screen name="Main" component={TabNavigator} />
-        <Stack.Screen name="QuizSetup" component={QuizSetupScreen} />
-        <Stack.Screen
-          name="Quiz"
-          component={QuizScreen}
-          options={{ gestureEnabled: false }} // 스와이프 뒤로 가기 비활성화
-        />
       </Stack.Navigator>
     </NavigationContainer>
   );
