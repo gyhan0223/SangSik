@@ -31,16 +31,21 @@ export default function QuizSetupScreen() {
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        style={styles.scrollView}
+        style={styles.categoryScroll}
       >
         {categories.map((category) => (
           <TouchableOpacity
             key={category}
             style={[
-              styles.optionButton,
+              styles.categoryButton,
               selectedCategory === category && styles.selectedButton,
             ]}
-            onPress={() => setSelectedCategory(category)}
+            onPress={
+              () =>
+                setSelectedCategory(
+                  selectedCategory === category ? null : category
+                ) // 다시 클릭하면 해제
+            }
           >
             <Text style={styles.optionText}>{category}</Text>
           </TouchableOpacity>
@@ -56,7 +61,12 @@ export default function QuizSetupScreen() {
             styles.optionButton,
             selectedDifficulty === difficulty && styles.selectedButton,
           ]}
-          onPress={() => setSelectedDifficulty(difficulty)}
+          onPress={
+            () =>
+              setSelectedDifficulty(
+                selectedDifficulty === difficulty ? null : difficulty
+              ) // 다시 클릭하면 해제
+          }
         >
           <Text style={styles.optionText}>{difficulty}</Text>
         </TouchableOpacity>

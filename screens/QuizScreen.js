@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { View, Text, TouchableOpacity, Alert } from "react-native";
 import styles from "../styles";
+import { useNavigation } from "@react-navigation/native"; // 🔥 추가
 
 const quizData = [
   {
@@ -42,6 +43,7 @@ export default function QuizScreen() {
   const [quizStarted, setQuizStarted] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedDifficulty, setSelectedDifficulty] = useState(null);
+  const navigation = useNavigation(); // 🔥 네비게이션 객체 가져오기
 
   useEffect(() => {
     if (quizStarted) {
@@ -128,7 +130,10 @@ export default function QuizScreen() {
               styles.optionButton,
               selectedCategory === category && styles.selectedButton,
             ]}
-            onPress={() => setSelectedCategory(category)}
+            onPress={() => {
+              navigation.replace("퀴즈설정");
+              setSelectedCategory(category);
+            }}
           >
             <Text style={styles.optionText}>{category}</Text>
           </TouchableOpacity>

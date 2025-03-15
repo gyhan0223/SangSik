@@ -9,6 +9,7 @@ import QuizScreen from "./screens/QuizScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import LoginScreen from "./screens/LoginScreen";
 import SignUpScreen from "./screens/SignUpScreen";
+import QuizSetupScreen from "./screens/QuizSetupScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -31,7 +32,7 @@ function TabNavigator() {
       })}
     >
       <Tab.Screen name="홈" component={HomeScreen} />
-      <Tab.Screen name="퀴즈" component={QuizScreen} />
+      <Tab.Screen name="퀴즈" component={QuizSetupScreen} />
       <Tab.Screen name="프로필" component={ProfileScreen} />
     </Tab.Navigator>
   );
@@ -48,6 +49,7 @@ export default function App() {
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
         <Stack.Screen name="Main" component={TabNavigator} />
+        <Stack.Screen name="퀴즈설정" component={QuizSetupScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
