@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: 24,
     fontWeight: "bold",
-    color: "#ffffff",
+    color: "black",
   },
   myPoints: {
     position: "absolute", // 절대 위치 설정
@@ -70,6 +70,26 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 10, // questionContainer 안에서 우측 정렬
     top: 10, // questionContainer 안에서 상단 정렬
+  },
+  label: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginVertical: 10,
+  },
+  selectedButton: {
+    backgroundColor: "#4CAF50",
+  },
+  startButton: {
+    backgroundColor: "#008CBA",
+    padding: 15,
+    borderRadius: 5,
+    marginTop: 20,
+    alignItems: "center",
+  },
+  startButtonText: {
+    fontSize: 18,
+    color: "white",
+    fontWeight: "bold",
   },
 });
 

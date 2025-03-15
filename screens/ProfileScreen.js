@@ -7,17 +7,26 @@ import {
   StyleSheet,
   Alert,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native"; // 🔥 추가
 
 export default function ProfileScreen() {
+  const navigation = useNavigation(); // 🔥 네비게이션 객체 가져오기
+
   const [nickname, setNickname] = useState("사용자123");
   const [email, setEmail] = useState("user@example.com");
   const [points, setPoints] = useState(150);
-  const [achievements, setAchievements] = useState(["퀴즈 마스터", "상식왕"]); // 예제 업적
+  const [achievements, setAchievements] = useState(["퀴즈 마스터", "상식왕"]);
 
   const handleLogout = () => {
     Alert.alert("로그아웃", "정말 로그아웃 하시겠습니까?", [
       { text: "취소", style: "cancel" },
-      { text: "확인", onPress: () => console.log("로그아웃") },
+      {
+        text: "확인",
+        onPress: () => {
+          console.log("로그아웃");
+          navigation.replace("Login"); // 🔥 로그인 화면으로 이동 (뒤로가기 불가능)
+        },
+      },
     ]);
   };
 
@@ -25,10 +34,7 @@ export default function ProfileScreen() {
     <View style={styles.container}>
       {/* 🔥 프로필 섹션 */}
       <View style={styles.profileSection}>
-        <Image
-          // source={require("../assets/avatar.png")}
-          style={styles.avatar}
-        />
+        <Image style={styles.avatar} />
         <Text style={styles.nickname}>{nickname}</Text>
         <Text style={styles.email}>{email}</Text>
         <TouchableOpacity style={styles.editButton}>
