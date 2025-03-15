@@ -22,6 +22,10 @@ export default function QuizSetupScreen() {
     });
   };
 
+  const handleTestQuiz = () => {
+    navigation.navigate("Quiz");
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.headerText}>퀴즈 설정</Text>
@@ -75,6 +79,11 @@ export default function QuizSetupScreen() {
       {/* 시작 버튼 */}
       <TouchableOpacity style={styles.startButton} onPress={handleStartQuiz}>
         <Text style={styles.startButtonText}>시작하기</Text>
+      </TouchableOpacity>
+
+      {/* 테스트 버튼 추가 */}
+      <TouchableOpacity style={styles.testButton} onPress={handleTestQuiz}>
+        <Text style={styles.testButtonText}>테스트</Text>
       </TouchableOpacity>
     </View>
   );

@@ -49,7 +49,12 @@ export default function App() {
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
         <Stack.Screen name="Main" component={TabNavigator} />
-        <Stack.Screen name="퀴즈설정" component={QuizSetupScreen} />
+        <Stack.Screen name="QuizSetup" component={QuizSetupScreen} />
+        <Stack.Screen
+          name="Quiz"
+          component={QuizScreen}
+          options={{ gestureEnabled: false }} // 스와이프 뒤로 가기 비활성화
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

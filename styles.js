@@ -1,9 +1,11 @@
 import { StyleSheet } from "react-native";
+import { StatusBar } from "expo-status-bar";
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f8f9fa", // 밝은 배경색
+    backgroundColor: "#fff", // 밝은 배경색
+    position: "relative", // 뒤로가기 버튼이 화면 밖으로 나가서 추가함
   },
   header: {
     flexDirection: "row",
@@ -69,8 +71,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "red",
     position: "absolute",
-    right: 10, // questionContainer 안에서 우측 정렬
-    top: 10, // questionContainer 안에서 상단 정렬
+    right: 10, // 문제 컨테이너 내부 우측 상단
+    top: 10,
   },
   label: {
     fontSize: 18,
@@ -207,6 +209,46 @@ const styles = StyleSheet.create({
   noteText: {
     color: "#fff",
     fontSize: 14,
+  },
+  testButton: {
+    backgroundColor: "#FF9800", // 주황색 버튼
+    padding: 15,
+    borderRadius: 5,
+    marginTop: 10, // 시작 버튼과 간격 추가
+    alignItems: "center",
+  },
+
+  testButtonText: {
+    fontSize: 18,
+    color: "white",
+    fontWeight: "bold",
+  },
+  backButton: {
+    position: "absolute",
+    color: "black",
+    top: StatusBar.currentHeight ? StatusBar.currentHeight + 10 : 50, // ✅ 동적 조정
+    left: 15,
+    zIndex: 10, // 모든 요소 위에 배치
+    padding: 10,
+    borderRadius: 5,
+  },
+
+  backButtonText: {
+    fontSize: 24,
+    color: "black",
+    fontWeight: "bold",
+  },
+  difficultyBadge: {
+    paddingVertical: 4,
+    paddingHorizontal: 10,
+    borderRadius: 5,
+    alignSelf: "flex-start",
+    marginBottom: 5,
+  },
+  difficultyText: {
+    fontSize: 14,
+    fontWeight: "bold",
+    color: "#fff",
   },
 });
 
