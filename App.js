@@ -10,6 +10,8 @@ import ProfileScreen from "./screens/ProfileScreen";
 import LoginScreen from "./screens/LoginScreen";
 import SignUpScreen from "./screens/SignUpScreen";
 import QuizSetupScreen from "./screens/QuizSetupScreen";
+import SplashScreen from "./screens/SplashScreen"; // ✅ 추가
+import WelcomeScreen from "./screens/WelcomeScreen"; // ✅ 추가
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -58,9 +60,11 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Login"
+        initialRouteName="Splash"
         screenOptions={{ headerShown: false }}
       >
+        <Stack.Screen name="Splash" component={SplashScreen} />
+        <Stack.Screen name="Welcome" component={WelcomeScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
         <Stack.Screen name="Main" component={TabNavigator} />
