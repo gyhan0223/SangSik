@@ -10,9 +10,10 @@ import ProfileScreen from "./screens/ProfileScreen";
 import LoginScreen from "./screens/LoginScreen";
 import SignUpScreen from "./screens/SignUpScreen";
 import QuizSetupScreen from "./screens/QuizSetupScreen";
-import SplashScreen from "./screens/SplashScreen"; // ✅ 추가
-import WelcomeScreen from "./screens/WelcomeScreen"; // ✅ 추가
+import SplashScreen from "./screens/SplashScreen";
+import WelcomeScreen from "./screens/WelcomeScreen";
 import EditProfileScreen from "./screens/EditProfileScreen";
+import EventScreen from "./screens/EventScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -41,6 +42,7 @@ function TabNavigator() {
           let iconName;
           if (route.name === "홈") iconName = "home-outline";
           else if (route.name === "퀴즈") iconName = "help-circle-outline";
+          else if (route.name === "이벤트") iconName = "gift-outline";
           else if (route.name === "프로필") iconName = "person-outline";
 
           return <Ionicons name={iconName} size={size} color={color} />;
@@ -51,6 +53,7 @@ function TabNavigator() {
     >
       <Tab.Screen name="홈" component={HomeScreen} />
       <Tab.Screen name="퀴즈" component={QuizNavigator} />
+      <Tab.Screen name="이벤트" component={EventScreen} />
       <Tab.Screen name="프로필" component={ProfileScreen} />
     </Tab.Navigator>
   );
