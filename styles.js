@@ -5,7 +5,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff", // 밝은 배경색
-    position: "relative", // 뒤로가기 버튼이 화면 밖으로 나가서 추가함
+    paddingTop: StatusBar.currentHeight || 20, // ✅ StatusBar 침범 방지
+    paddingHorizontal: 20,
   },
   header: {
     flexDirection: "row",
@@ -249,6 +250,86 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "bold",
     color: "#fff",
+  },
+  formContainer: {
+    width: "100%",
+  },
+  stepContainer: {
+    marginBottom: 20,
+  },
+  row: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 10,
+  },
+  pickerContainer: {
+    width: 90, // ✅ 통신사 드롭다운 크기 조정
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 8,
+    backgroundColor: "#fff",
+    justifyContent: "center",
+  },
+  pickerButton: {
+    width: 90, // ✅ 통신사 선택 영역을 버튼 크기에 맞춤
+    height: 50,
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 8,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#fff",
+  },
+  picker: {
+    width: "100%",
+    height: 150, // 드롭다운 높이 조정
+    position: "absolute",
+    top: 50, // 버튼 아래에 위치
+    backgroundColor: "#fff",
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 8,
+  },
+  pickerText: {
+    fontSize: 16,
+    color: "#333",
+  },
+  phoneInput: {
+    flex: 1, // ✅ 전화번호 입력란이 가득 차도록 설정
+    marginLeft: 10,
+  },
+  input: {
+    height: 50,
+    borderColor: "#ccc",
+    borderWidth: 1,
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    backgroundColor: "#fff",
+    marginBottom: 10,
+  },
+  button: {
+    backgroundColor: "#4CAF50",
+    paddingVertical: 15,
+    borderRadius: 8,
+    alignItems: "center",
+    marginTop: 10,
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 30, // ✅ 여백 추가
+    marginLeft: 10, // ✅ 왼쪽 여백 추가
+  },
+  content: {
+    flex: 1,
+    justifyContent: "center", // ✅ 화면 중앙 정렬
+    alignItems: "center",
+    paddingHorizontal: 20,
   },
 });
 
