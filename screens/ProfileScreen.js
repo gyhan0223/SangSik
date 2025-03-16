@@ -1,13 +1,7 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  StyleSheet,
-  Alert,
-} from "react-native";
+import { View, Text, Image, TouchableOpacity, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native"; // 🔥 추가
+import styles from "../styles";
 
 export default function ProfileScreen() {
   const navigation = useNavigation(); // 🔥 네비게이션 객체 가져오기
@@ -30,6 +24,10 @@ export default function ProfileScreen() {
     ]);
   };
 
+  const handleEditProfile = () => {
+    navigation.navigate("EditProfile"); // ✅ 프로필 수정 화면으로 이동
+  };
+
   return (
     <View style={styles.container}>
       {/* 🔥 프로필 섹션 */}
@@ -37,7 +35,8 @@ export default function ProfileScreen() {
         <Image style={styles.avatar} />
         <Text style={styles.nickname}>{nickname}</Text>
         <Text style={styles.email}>{email}</Text>
-        <TouchableOpacity style={styles.editButton}>
+
+        <TouchableOpacity style={styles.editButton} onPress={handleEditProfile}>
           <Text style={styles.editButtonText}>프로필 수정</Text>
         </TouchableOpacity>
       </View>
@@ -64,50 +63,3 @@ export default function ProfileScreen() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    padding: 20,
-    backgroundColor: "#f8f9fa",
-  },
-  profileSection: { alignItems: "center", marginBottom: 20 },
-  avatar: { width: 100, height: 100, borderRadius: 50, marginBottom: 10 },
-  nickname: { fontSize: 20, fontWeight: "bold" },
-  email: { fontSize: 14, color: "gray" },
-  editButton: {
-    marginTop: 10,
-    backgroundColor: "#4CAF50",
-    paddingVertical: 8,
-    paddingHorizontal: 15,
-    borderRadius: 5,
-  },
-  editButtonText: { color: "#fff", fontSize: 14 },
-  infoContainer: {
-    width: "100%",
-    padding: 15,
-    backgroundColor: "#ffeb3b",
-    borderRadius: 10,
-    marginBottom: 15,
-  },
-  infoText: { fontSize: 16, fontWeight: "bold" },
-  statsContainer: {
-    width: "100%",
-    padding: 15,
-    backgroundColor: "#ffffff",
-    borderRadius: 10,
-    elevation: 3,
-    marginBottom: 20,
-  },
-  statsTitle: { fontSize: 18, fontWeight: "bold", marginBottom: 10 },
-  statsText: { fontSize: 14, marginBottom: 5 },
-  logoutButton: {
-    backgroundColor: "#d32f2f",
-    padding: 12,
-    borderRadius: 8,
-    width: "100%",
-    alignItems: "center",
-  },
-  logoutText: { color: "#fff", fontSize: 16, fontWeight: "bold" },
-});
