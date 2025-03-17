@@ -70,12 +70,12 @@ export default function App() {
         <Stack.Screen
           name="Splash"
           component={SplashScreen}
-          options={{ animation: "none" }}
+          options={{ animation: "none" }} // SplashCreen에서 WelcomeScreen으로 넘어갈 때 애니메이션 제거
         />
         <Stack.Screen
           name="Welcome"
           component={WelcomeScreen}
-          options={{ animation: "none" }}
+          options={{ animation: "none" }} // SplashCreen에서 WelcomeScreen으로 넘어갈 때 애니메이션 제거
         />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />

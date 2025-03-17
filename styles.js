@@ -295,8 +295,11 @@ const styles = StyleSheet.create({
     color: "#333",
   },
   phoneInput: {
-    flex: 1, // ✅ 전화번호 입력란이 가득 차도록 설정
+    flex: 1,
     marginLeft: 10,
+    color: "#000", // ✅ 입력 글자 색 추가
+    width: "70%", // ✅ 적절한 너비 설정
+    borderColor: "#4CAF50", // 입력 필드 시각적으로 구분
   },
   input: {
     height: 50,
@@ -306,6 +309,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     backgroundColor: "#fff",
     marginBottom: 10,
+    color: "#000", // ✅ 입력 글자 색 추가
   },
   button: {
     backgroundColor: "#4CAF50",
