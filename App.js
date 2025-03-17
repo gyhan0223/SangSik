@@ -67,8 +67,16 @@ export default function App() {
         initialRouteName="Splash"
         screenOptions={{ headerShown: false }}
       >
-        <Stack.Screen name="Splash" component={SplashScreen} />
-        <Stack.Screen name="Welcome" component={WelcomeScreen} />
+        <Stack.Screen
+          name="Splash"
+          component={SplashScreen}
+          options={{ animation: "none" }}
+        />
+        <Stack.Screen
+          name="Welcome"
+          component={WelcomeScreen}
+          options={{ animation: "none" }}
+        />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
         <Stack.Screen name="Main" component={TabNavigator} />
